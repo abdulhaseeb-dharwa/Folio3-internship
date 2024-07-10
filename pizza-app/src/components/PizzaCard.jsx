@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import { Card, Select, Button } from "antd";
+import { Card, Select, Button, message } from "antd";
+import { useCart } from "../components/CartContext";
 
 const { Option } = Select;
 
 const PizzaCard = ({ pizza, showModal }) => {
-  const [selectedVariant, setSelectedVariant] = useState(pizza.variants[0].name);
+  const [selectedVariant, setSelectedVariant] = useState(
+    pizza.variants[0].name
+  );
   const [selectedQuantity, setSelectedQuantity] = useState(1);
+  const { addToCart } = useCart();
 
   const handleVariantChange = (value) => {
     setSelectedVariant(value);
@@ -22,6 +26,16 @@ const PizzaCard = ({ pizza, showModal }) => {
     );
     const totalPrice = selectedVariantObj.price * selectedQuantity;
 
+    const item = {
+      name: pizza.name,
+      variant: selectedVariant,
+      quantity: selectedQuantity,
+      price: totalPrice,
+      imageUrl: pizza.imageUrl,
+    };
+
+    addToCart(item);
+    message.success("Added to cart");
     console.log(
       `Added to cart: ${pizza.name}, Variant: ${selectedVariant}, Quantity: ${selectedQuantity}, Total Price: ${totalPrice} Rs/-`
     );
@@ -62,7 +76,8 @@ const PizzaCard = ({ pizza, showModal }) => {
       </Select>
       <p>
         Price:{" "}
-        {pizza.variants.find((v) => v.name === selectedVariant).price * selectedQuantity}{" "}
+        {pizza.variants.find((v) => v.name === selectedVariant).price *
+          selectedQuantity}{" "}
         Rs/-
       </p>
       <p>
