@@ -1,0 +1,39 @@
+y.login-row {
+  height: 100vh;
+  background-color: #f0f2f5;
+  display: flex;
+  align-items: center;
+}
+
+.login-container {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.login-button {
+  margin-top: 20px;
+  background-color: red;
+}
+
+.login-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-link{
+  color: black;
+}
+.login-link-container {
+  text-align: left;
+  margin-top: 20px;
+}
+.ant-form-item {
+  margin-bottom: 15px;
+}
+
+.ant-btn-primary {
+  width: 100%;
+}
