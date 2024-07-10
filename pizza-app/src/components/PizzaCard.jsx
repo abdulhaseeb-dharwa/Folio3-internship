@@ -47,39 +47,50 @@ const PizzaCard = ({ pizza, showModal }) => {
       title={pizza.name}
       cover={<img alt={pizza.name} src={pizza.imageUrl} />}
       onClick={() => showModal(pizza)}
+      style={{ marginBottom: "20px" }}
     >
-      <p>Variants:</p>
-      <Select
-        defaultValue={selectedVariant}
-        style={{ width: 120 }}
-        onChange={handleVariantChange}
-        onClick={(e) => e.stopPropagation()}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
       >
-        {pizza.variants.map((variant) => (
-          <Option key={variant.name} value={variant.name}>
-            {variant.name}
-          </Option>
-        ))}
-      </Select>
-      <p>Quantity:</p>
-      <Select
-        defaultValue={1}
-        style={{ width: 120 }}
-        onChange={handleQuantityChange}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((qty) => (
-          <Option key={qty} value={qty}>
-            {qty}
-          </Option>
-        ))}
-      </Select>
+        <p>Variants:</p>
+        <Select
+          defaultValue={selectedVariant}
+          style={{ width: 120 }}
+          onChange={handleVariantChange}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {pizza.variants.map((variant) => (
+            <Option key={variant.name} value={variant.name}>
+              {variant.name}
+            </Option>
+          ))}
+        </Select>
+        <p>Quantity:</p>
+        <Select
+          defaultValue={1}
+          style={{ width: 120 }}
+          onChange={handleQuantityChange}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((qty) => (
+            <Option key={qty} value={qty}>
+              {qty}
+            </Option>
+          ))}
+        </Select>
+      </div>
+      <div style={{ marginTop: "2px" }}>
       <p>
         Price:{" "}
         {pizza.variants.find((v) => v.name === selectedVariant).price *
           selectedQuantity}{" "}
         Rs/-
       </p>
+      </div>
       <p>
         <Button
           type="primary"
