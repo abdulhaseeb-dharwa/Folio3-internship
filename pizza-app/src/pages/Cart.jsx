@@ -28,7 +28,7 @@ export default function Cart() {
         ) : (
           <>
             <List
-              grid={{ gutter: 16, column: 3.5 }}
+              grid={{ gutter: 16, column: 1 }}
               dataSource={cartItems}
               renderItem={(item) => (
                 <List.Item>
