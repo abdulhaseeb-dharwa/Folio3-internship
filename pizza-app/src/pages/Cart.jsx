@@ -2,7 +2,7 @@ import React from "react";
 import { List, Card, Button, InputNumber } from "antd";
 import Menu from "../components/Menu";
 import { useDispatch, useSelector } from "react-redux";
-import { cartActions } from "../store/cart-slice";
+import { cartActions } from "../store/Cart-slice";
 
 export default function Cart() {
   const items = useSelector((state) => state.cart.items);

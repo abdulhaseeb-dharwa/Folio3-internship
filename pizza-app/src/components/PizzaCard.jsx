@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card, Select, Button, message } from "antd";
 import { useDispatch } from "react-redux";
-import { cartActions } from "../store/cart-slice";
+import { cartActions } from "../store/Cart-slice";
 
 const { Option } = Select;
 
