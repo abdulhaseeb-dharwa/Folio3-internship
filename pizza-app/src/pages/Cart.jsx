@@ -1,20 +1,22 @@
 import React from "react";
-import { useCart } from "../components/CartContext";
 import { List, Card, Button, InputNumber } from "antd";
 import Menu from "../components/Menu";
+import { useDispatch, useSelector } from "react-redux";
+import { cartActions } from "../store/cart-slice";
 
 export default function Cart() {
-  const { cartItems, updateQuantity, removeFromCart } = useCart();
+  const items = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
 
-  const totalAmount = cartItems.reduce((acc, item) => acc + item.price, 0);
+  const totalAmount = items.reduce((acc, item) => acc + item.price, 0);
 
   const handleQuantityChange = (value, name, variant) => {
     if (value <= 0) return;
-    updateQuantity(name, variant, value);
+    dispatch(cartActions.updateQuantity({ name, variant, quantity: value }));
   };
 
   const handleRemove = (name, variant) => {
-    removeFromCart(name, variant);
+    dispatch(cartActions.removeFromCart({ name, variant }));
   };
 
   return (
@@ -23,13 +25,13 @@ export default function Cart() {
       <div align="left" style={{ padding: "20px" }}>
         <h2>My Cart</h2>
         <h3 align="right">Total: {totalAmount} Rs/-</h3>
-        {cartItems.length === 0 ? (
-          <p>Your cart is empty.</p>
+        {items.length === 0 ? (
+          <div>Your cart is empty.</div>
         ) : (
           <>
             <List
               grid={{ gutter: 16, column: 1 }}
-              dataSource={cartItems}
+              dataSource={items}
               renderItem={(item) => (
                 <List.Item>
                   <Card
@@ -39,19 +41,20 @@ export default function Cart() {
                         type="primary"
                         danger
                         onClick={() => handleRemove(item.name, item.variant)}
-                        
                       >
                         Remove
                       </Button>
                     }
                   >
-                    <img
-                      src={item.imageUrl}
-                      alt={item.name}
-                      style={{ width: "100px", marginBottom: "10px" }}
-                    />
-                    <p>Variant: {item.variant}</p>
-                    <p>
+                    <div>
+                      <img
+                        src={item.imageUrl}
+                        alt={item.name}
+                        style={{ width: "100px", marginBottom: "10px" }}
+                      />
+                    </div>
+                    <div>Variant: {item.variant}</div>
+                    <div>
                       Quantity:
                       <InputNumber
                         min={1}
@@ -61,8 +64,8 @@ export default function Cart() {
                         }
                         style={{ marginLeft: "10px" }}
                       />
-                    </p>
-                    <p>Price: {item.price} Rs/-</p>
+                    </div>
+                    <div>Price: {item.price} Rs/-</div>
                   </Card>
                 </List.Item>
               )}

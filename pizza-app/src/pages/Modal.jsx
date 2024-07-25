@@ -9,21 +9,25 @@ const App = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedPizza, setSelectedPizza] = useState(null);
 
-  const fetchPizza = async () => {
-    try {
-      const response = await api.get("/pizzaData");
-      setPizzaData(response.data);
-    } catch (error) {
+  useEffect(() => {
+    const fetchPizza = async () => {
       try {
-        const response = await api.get("http://10.164.60.54:3500/pizzaData");
+        const response = await api.get("/pizzaData");
         setPizzaData(response.data);
       } catch (error) {
-        alert("There was an error fetching the pizza data. Please try again later.");
-        console.log("There was an error fetching the pizza data: ", error);
+        try {
+          const response = await api.get("http://10.164.60.54:3500/pizzaData");
+          setPizzaData(response.data);
+        } catch (error) {
+          alert(
+            "There was an error fetching the pizza data. Please try again later."
+          );
+          console.log("There was an error fetching the pizza data: ", error);
+        }
       }
-    }
-  };
-  fetchPizza();
+    };
+    fetchPizza();
+  }, []);
 
   const showModal = (pizza) => {
     setSelectedPizza(pizza);

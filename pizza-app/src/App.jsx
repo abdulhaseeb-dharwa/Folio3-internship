@@ -4,11 +4,13 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Cart from "./pages/Cart";
-import { CartProvider } from "./components/CartContext";
+//import { CartProvider } from "./components/CartContext";
+import { Provider } from "react-redux";
+import store from "./store";
 
 export default function App() {
   return (
-    <CartProvider>
+    <Provider store={store}>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -17,6 +19,6 @@ export default function App() {
           <Route path="/cart" element={<Cart />} />
         </Routes>
       </Router>
-    </CartProvider>
+    </Provider>
   );
 }
