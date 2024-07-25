@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Row, Col } from "antd";
 import PizzaCard from "../components/PizzaCard";
 import PizzaModal from "../components/PizzaModal";
-import api from "../api/pizzas";
+import { fetchData } from "../services/apiService";
 import Loader from "../components/loader";
 
 const App = () => {
@@ -13,11 +13,10 @@ const App = () => {
 
   useEffect(() => {
     const fetchPizza = async () => {
+      setLoadingState(true);
       try {
-        setLoadingState(true);
-        const response = await api.get("/pizzaData");
-        console.log(response.data);
-        setPizzaData(response.data);
+        const data = await fetchData("/pizzaData");
+        setPizzaData(data);
       } catch (error) {
         console.log("There was an error fetching the pizza data: ", error);
       } finally {
