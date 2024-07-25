@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { Card, Select, Button, message } from "antd";
-import { useCart } from "../components/CartContext";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../store/cart-slice";
 
 const { Option } = Select;
 
 const PizzaCard = ({ pizza, showModal }) => {
-  const [selectedVariant, setSelectedVariant] = useState(
-    pizza.variants[0].name
-  );
+  const [selectedVariant, setSelectedVariant] = useState(pizza.variants[0].name);
   const [selectedQuantity, setSelectedQuantity] = useState(1);
-  const { addToCart } = useCart();
+  const dispatch = useDispatch();
 
   const handleVariantChange = (value) => {
     setSelectedVariant(value);
@@ -21,9 +20,7 @@ const PizzaCard = ({ pizza, showModal }) => {
 
   const handleAddToCart = (e) => {
     e.stopPropagation();
-    const selectedVariantObj = pizza.variants.find(
-      (v) => v.name === selectedVariant
-    );
+    const selectedVariantObj = pizza.variants.find((v) => v.name === selectedVariant);
     const totalPrice = selectedVariantObj.price * selectedQuantity;
 
     const item = {
@@ -34,7 +31,7 @@ const PizzaCard = ({ pizza, showModal }) => {
       imageUrl: pizza.imageUrl,
     };
 
-    addToCart(item);
+    dispatch(cartActions.addToCart(item));
     message.success("Added to cart");
     console.log(
       `Added to cart: ${pizza.name}, Variant: ${selectedVariant}, Quantity: ${selectedQuantity}, Total Price: ${totalPrice} Rs/-`
@@ -49,14 +46,8 @@ const PizzaCard = ({ pizza, showModal }) => {
       onClick={() => showModal(pizza)}
       style={{ marginBottom: "20px" }}
     >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <p>Variants:</p>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <span>Variants:</span>
         <Select
           defaultValue={selectedVariant}
           style={{ width: 120 }}
@@ -69,7 +60,7 @@ const PizzaCard = ({ pizza, showModal }) => {
             </Option>
           ))}
         </Select>
-        <p>Quantity:</p>
+        <span>Quantity:</span>
         <Select
           defaultValue={1}
           style={{ width: 120 }}
@@ -84,14 +75,11 @@ const PizzaCard = ({ pizza, showModal }) => {
         </Select>
       </div>
       <div style={{ marginTop: "2px" }}>
-      <p>
-        Price:{" "}
-        {pizza.variants.find((v) => v.name === selectedVariant).price *
-          selectedQuantity}{" "}
-        Rs/-
-      </p>
+        <span>
+          Price: {pizza.variants.find((v) => v.name === selectedVariant).price * selectedQuantity} Rs/-
+        </span>
       </div>
-      <p>
+      <div style={{ marginTop: "2px" }}>
         <Button
           type="primary"
           style={{ color: "white", backgroundColor: "red" }}
@@ -99,7 +87,7 @@ const PizzaCard = ({ pizza, showModal }) => {
         >
           ADD TO CART
         </Button>
-      </p>
+      </div>
     </Card>
   );
 };

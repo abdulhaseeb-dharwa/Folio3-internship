@@ -22,6 +22,21 @@ class MenuComponent extends Component {
   };
 
   render() {
+    const menuItems = [
+      {
+        label: <Link to="/">Home</Link>,
+        key: "1",
+      },
+      {
+        label: <Link to="/login">Login</Link>,
+        key: "2",
+      },
+      {
+        label: <Link to="/cart">Cart</Link>,
+        key: "3",
+      },
+    ];
+
     return (
       <nav className="menuBar">
         <div className="menuContainer">
@@ -42,7 +57,7 @@ class MenuComponent extends Component {
               <Link to="/cart">Cart</Link>
             </Button>
           </div>
-          <Button className="barsMenu" type='text' onClick={this.showDrawer}>
+          <Button className="barsMenu" type="text" onClick={this.showDrawer}>
             <MenuOutlined />
           </Button>
           <Drawer
@@ -51,17 +66,7 @@ class MenuComponent extends Component {
             onClose={this.onClose}
             open={this.state.visible}
           >
-            <Menu mode="vertical">
-              <Menu.Item key="1">
-                <Link to="/">Home</Link>
-              </Menu.Item>
-              <Menu.Item key="2">
-                <Link to="/login">Login</Link>
-              </Menu.Item>
-              <Menu.Item key="3">
-                <Link to="/cart">Cart</Link>
-              </Menu.Item>
-            </Menu>
+            <Menu mode="vertical" items={menuItems} />
           </Drawer>
         </div>
       </nav>
