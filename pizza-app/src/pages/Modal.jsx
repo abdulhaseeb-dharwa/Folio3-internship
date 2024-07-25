@@ -16,17 +16,10 @@ const App = () => {
       try {
         setLoadingState(true);
         const response = await api.get("/pizzaData");
+        console.log(response.data);
         setPizzaData(response.data);
       } catch (error) {
-        try {
-          const response = await api.get("http://10.164.60.54:3500/pizzaData");
-          setPizzaData(response.data);
-        } catch (error) {
-          alert(
-            "There was an error fetching the pizza data. Please try again later."
-          );
-          console.log("There was an error fetching the pizza data: ", error);
-        }
+        console.log("There was an error fetching the pizza data: ", error);
       } finally {
         setLoadingState(false);
       }
