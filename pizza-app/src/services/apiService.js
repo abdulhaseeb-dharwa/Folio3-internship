@@ -5,8 +5,8 @@ export const fetchData = async (endpoint) => {
     const response = await api.get(endpoint);
     return response.data;
   } catch (err) {
-    console.error("Error fetching data from ${endpoint}: ", err);
-    throw err
+    console.error(`Error fetching data from ${endpoint}: `, err);
+    throw err;
   }
 };
 
@@ -15,8 +15,8 @@ export const postData = async (endpoint, data) => {
     const response = await api.post(endpoint, data);
     return response.data;
   } catch (err) {
-    console.error("Error posting data to ${endpoint}: ", err);
-    throw err
+    console.error(`Error posting data to ${endpoint}: `, err);
+    throw err;
   }
 };
 
@@ -25,7 +25,7 @@ export const deleteData = async (endpoint) => {
     const response = await api.delete(endpoint);
     return response.data;
   } catch (err) {
-    console.error("Error deleting data from ${endpoint}: ", err);
-    throw err
+    console.error(`Error deleting data from ${endpoint}: `, err);
+    throw err;
   }
 };

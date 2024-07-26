@@ -2,29 +2,20 @@ import React, { useEffect, useState } from "react";
 import { Row, Col } from "antd";
 import PizzaCard from "../components/PizzaCard";
 import PizzaModal from "../components/PizzaModal";
-import { fetchData } from "../services/apiService";
 import Loader from "../components/loader";
+import { fetchPizzas } from "../store/Data-thunks";
+import { useDispatch, useSelector } from "react-redux";
 
 const App = () => {
-  const [pizzaData, setPizzaData] = useState([]);
+  const dispatch = useDispatch();
+  const pizzaData = useSelector((state) => state.data.data);
+  const loading = useSelector((state) => state.data.loading);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedPizza, setSelectedPizza] = useState(null);
-  const [loading, setLoadingState] = useState(false);
 
   useEffect(() => {
-    const fetchPizza = async () => {
-      setLoadingState(true);
-      try {
-        const data = await fetchData("/pizzaData");
-        setPizzaData(data);
-      } catch (error) {
-        console.log("There was an error fetching the pizza data: ", error);
-      } finally {
-        setLoadingState(false);
-      }
-    };
-    fetchPizza();
-  }, []);
+    dispatch(fetchPizzas("/pizzaData"));
+  }, [dispatch]);
 
   if (loading) {
     return <Loader />;
