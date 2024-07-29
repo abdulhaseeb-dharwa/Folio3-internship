@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Cart from "./pages/Cart";
 import DeletePizza from "./pages/DeleteView";
+import AddPizza from "./pages/AddView"
 //import { CartProvider } from "./components/CartContext";
 import { Provider } from "react-redux";
 import store from "./store";
@@ -25,6 +26,7 @@ function AppContent() {
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/delete" element={<DeletePizza />} />
+        <Route path="/add" element={<AddPizza />} />
       </Routes>
     </Router>
   );

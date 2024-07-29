@@ -1,4 +1,4 @@
-import { fetchData,deleteData } from "../services/apiService";
+import { fetchData, deleteData, postData } from "../services/apiService";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchPizzas = createAsyncThunk(
@@ -20,6 +20,19 @@ export const removePizzas = createAsyncThunk(
       await deleteData(endpoint);
       dispatch(fetchPizzas("/pizzaData")); // Fetch pizzas again after deletion
       return endpoint;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const addPizzas = createAsyncThunk(
+  "pizzas/addPizza",
+  async (newPizza, { dispatch, rejectWithValue }) => {
+    try {
+      await postData("/pizzaData", newPizza);
+      dispatch(fetchPizzas("/pizzaData")); // Fetch pizzas again after addition
+      return newPizza;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
