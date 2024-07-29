@@ -10,15 +10,20 @@ const App = () => {
   const dispatch = useDispatch();
   const pizzaData = useSelector((state) => state.data.data);
   const loading = useSelector((state) => state.data.loading);
+  const err = useSelector((state)=>state.data.error)
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedPizza, setSelectedPizza] = useState(null);
 
-  useEffect(() => {
-    dispatch(fetchPizzas("/pizzaData"));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchPizzas("/pizzaData"));
+  // }, [dispatch]);
 
   if (loading) {
     return <Loader />;
+  }
+
+  if (err) {
+    return <div>Error: {err.message}</div>
   }
 
   const showModal = (pizza) => {
