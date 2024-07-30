@@ -3,15 +3,19 @@ import "../components/Login.css";
 import Menu from "../components/Menu";
 import { Row, Col, Form, Input, Button } from "antd";
 import { Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 export default function Login() {
+  const { handleLogin, error } = useAuth();
+
   const onFinish = (values) => {
-    console.log("Success:", values);
+    handleLogin(values.email, values.password);
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
   return (
     <>
       <Menu />
@@ -41,6 +45,7 @@ export default function Login() {
               >
                 <Input.Password placeholder="Enter Password" />
               </Form.Item>
+              {error && <p className="error">{error}</p>}
               <Button
                 type="primary"
                 htmlType="submit"

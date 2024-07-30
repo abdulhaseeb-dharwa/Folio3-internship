@@ -220,5 +220,21 @@
         }
       ]
     }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "Shey",
+      "email": "admin@admin.com",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "name": "Haseeb",
+      "email": "user@shey.com",
+      "password": "user123",
+      "role": "user"
+    }
   ]
 }

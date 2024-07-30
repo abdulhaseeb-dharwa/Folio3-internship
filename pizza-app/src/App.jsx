@@ -5,12 +5,13 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Cart from "./pages/Cart";
 import DeletePizza from "./pages/DeleteView";
-import AddPizza from "./pages/AddView"
+import AddPizza from "./pages/AddView";
 //import { CartProvider } from "./components/CartContext";
 import { Provider } from "react-redux";
 import store from "./store";
 import { useDispatch } from "react-redux";
 import { fetchPizzas } from "./store/Data-thunks";
+import ProtectedRoute from "./private/ProtectedRoute";
 
 function AppContent() {
   const dispatch = useDispatch();
@@ -26,7 +27,14 @@ function AppContent() {
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/delete" element={<DeletePizza />} />
-        <Route path="/add" element={<AddPizza />} />
+        <Route
+          path="/add"
+          element={
+            <ProtectedRoute requiredRole="admin">
+              <AddPizza />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );
