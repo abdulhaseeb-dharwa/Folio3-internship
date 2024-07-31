@@ -12,6 +12,7 @@ const useAuth = () => {
     try {
       const result = await dispatch(login({ email, password })).unwrap();
       if (result.role === "admin") {
+        sessionStorage.setItem("user", JSON.stringify(result));
         navigate("/add");
       } else {
         navigate("/");

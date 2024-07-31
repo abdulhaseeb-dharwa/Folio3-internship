@@ -26,7 +26,14 @@ function AppContent() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/delete" element={<DeletePizza />} />
+        <Route
+          path="/delete"
+          element={
+            <ProtectedRoute requiredRole="admin">
+              <DeletePizza />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/add"
           element={

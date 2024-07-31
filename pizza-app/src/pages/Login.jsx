@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../components/Login.css";
 import Menu from "../components/Menu";
 import { Row, Col, Form, Input, Button } from "antd";
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const { handleLogin, error } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    if (user) {
+      if (user.role === "admin") {
+        navigate("/add");
+      }
+    }
+  }, [navigate]);
 
   const onFinish = (values) => {
     handleLogin(values.email, values.password);
