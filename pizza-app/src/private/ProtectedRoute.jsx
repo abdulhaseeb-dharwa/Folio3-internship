@@ -1,5 +1,5 @@
-import React from "react";
 import { Navigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const ProtectedRoute = ({ children, requiredRole }) => {
   const user = JSON.parse(sessionStorage.getItem("user"));
@@ -14,6 +14,11 @@ const ProtectedRoute = ({ children, requiredRole }) => {
   }
 
   return children;
+};
+
+ProtectedRoute.propTypes = {
+  children: PropTypes.node.isRequired,
+  requiredRole: PropTypes.string,
 };
 
 export default ProtectedRoute;

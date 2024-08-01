@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { Drawer, Button, Menu } from "antd";
 import { Link } from "react-router-dom";
 import { MenuOutlined } from "@ant-design/icons";

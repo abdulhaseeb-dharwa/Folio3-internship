@@ -1,4 +1,3 @@
-import React from "react";
 import { List, Card, Button, InputNumber } from "antd";
 import Menu from "../components/Menu";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,9 +21,9 @@ export default function Cart() {
   return (
     <>
       <Menu />
-      <div align="left" style={{ padding: "20px" }}>
+      <div style={{ padding: "20px", textAlign:"left" }}>
         <h2>My Cart</h2>
-        <h3 align="right">Total: {totalAmount} Rs/-</h3>
+        <h3 style={{textAlign:"right"}}>Total: {totalAmount} Rs/-</h3>
         {items.length === 0 ? (
           <div>Your cart is empty.</div>
         ) : (

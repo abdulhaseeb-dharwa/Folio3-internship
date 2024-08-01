@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 import { Card, Select, Button, message } from "antd";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../store/Cart-slice";

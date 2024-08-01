@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addPizzas } from "../store/Data-thunks";
 import * as Yup from "yup";

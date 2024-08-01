@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { Row, Col } from "antd";
 import PizzaCard from "../components/PizzaCard";
 import PizzaModal from "../components/PizzaModal";
 import Loader from "../components/loader";
-import { fetchPizzas } from "../store/Data-thunks";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const App = () => {
-  const dispatch = useDispatch();
   const pizzaData = useSelector((state) => state.data.data);
   const loading = useSelector((state) => state.data.loading);
   const err = useSelector((state)=>state.data.error)

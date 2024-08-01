@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "../components/Login.css";
 import Menu from "../components/Menu";
 import { Row, Col, Form, Input, Button } from "antd";

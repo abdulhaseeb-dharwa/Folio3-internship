@@ -1,4 +1,3 @@
-import React from "react";
 import Menu from "../components/Menu";
 import "../components/Login.css";
 import { Row, Col, Form, Input, Button } from "antd";

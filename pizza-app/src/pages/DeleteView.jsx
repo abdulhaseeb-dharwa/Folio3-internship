@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removePizzas } from "../store/Data-thunks";
-import { Card, Button, Row, Col, Alert } from "antd";
+import { Card, Button, Row, Col} from "antd";
 import Loader from "../components/loader";
 import { useNavigate } from "react-router-dom";
 
@@ -38,6 +37,7 @@ const DeletePizza = () => {
             style={{ marginBottom: "20px" }}
             actions={[
               <Button
+                key={pizza.id}
                 type="primary"
                 danger
                 onClick={() => handleDelete(pizza.id)}
@@ -45,8 +45,7 @@ const DeletePizza = () => {
                 Delete
               </Button>,
             ]}
-          >
-          </Card>
+          ></Card>
         </Col>
       ))}
     </Row>
