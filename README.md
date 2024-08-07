@@ -109,10 +109,6 @@ This repository is licensed under the MIT License. See the [LICENSE](LICENSE) fi
 
 For any questions or feedback, feel free to contact me:
 
-- Email: [your-email@example.com](mailto:your-email@example.com)
-- LinkedIn: [your-linkedin-profile](https://www.linkedin.com/in/your-linkedin-profile)
+- Email: [haseebfaisal2002@gmail.com](mailto:haseebfaisal2002@gmail.com)
+- LinkedIn: [Abdul Haseeb Dharwarwala](https://www.linkedin.com/in/abdul-haseeb-dharwarwala/)
 - GitHub: [abdulhaseeb-dharwa](https://github.com/abdulhaseeb-dharwa)
-
----
-
-Feel free to modify the content as needed and add specific details about each project. Let me know if there are any specific details or sections you'd like to include or change!
